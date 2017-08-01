@@ -19,12 +19,13 @@
 		android:id="@+id/recyclerview_vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@color/background"
+		android:background="@color/mapList_vertical_list_background"
 		android:layout_above="@+id/change_mode"/>
 	<TextView
 		android:id="@+id/change_mode"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		style="@style/mapListChangeModeButtonTheme"
 		android:layout_alignParentBottom="true"
 		tools:text="Ver en lista"/>
 </RelativeLayout>
