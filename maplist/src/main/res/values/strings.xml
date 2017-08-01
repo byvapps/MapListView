@@ -1,0 +1,5 @@
+<resources>
+	<string name="app_name">MapList</string>
+	<string name="See_on_list">Ver en lista</string>
+	<string name="See_on_map">Ver en mapa</string>
+</resources>
