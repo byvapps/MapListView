@@ -5,9 +5,24 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/view_base_layout_surface"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
-	<TextView
-		android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:padding="@dimen/general_all_half"
+	android:background="#FFF">
+	<LinearLayout
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="holi"/>
+		android:orientation="vertical">
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textStyle="bold"
+			android:text="This resistance has only been consumed by a solid planet."/>
+		<Space
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/general_all_half"/>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Remember: dryed rice tastes best when choped in a basin seasoned with oregano."/>
+	</LinearLayout>
 </RelativeLayout>
