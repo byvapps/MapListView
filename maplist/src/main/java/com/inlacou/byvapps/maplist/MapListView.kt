@@ -1,6 +1,7 @@
 package com.inlacou.byvapps.galdakao.ui.views.common.maplist
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -10,7 +11,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 
 import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
 import com.inlacou.byvapps.maplist.R
@@ -18,6 +18,7 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
+
 
 /**
  * Created by inlacou on 14/07/17.
@@ -41,25 +42,57 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	lateinit private var model: MapListViewModel<T>
 	lateinit private var controller: MapListViewCtrl<T>
 
-	constructor(context: Context) : super(context) {
-		this.cont = context
-		init()
-	}
-
-	constructor(context: Context, callbacks: Callbacks<T>) : super(context) {
-		this.cont = context
-		mCallback = callbacks
-		init()
-	}
-
 	constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
 		this.cont = context
 		init()
+		readAttrs(attrs)
 	}
 
 	constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
 		this.cont = context
 		init()
+		readAttrs(attrs)
+	}
+
+	protected fun readAttrs(attrs: AttributeSet) {
+		run {
+			val ta = context.obtainStyledAttributes(attrs, R.styleable.ChangeMode, 0, 0)
+			try {
+				//if (ta.hasValue(R.styleable.ChangeMode_changeModeTextSize)) setText(ta.getString(R.styleable.ThreeDimensionalButton_text))
+				if (ta.hasValue(R.styleable.ChangeMode_changeModeTextColor)) setChangeModeTextColor(ta.getColor(R.styleable.ChangeMode_changeModeTextColor, -1))
+				if (ta.hasValue(R.styleable.ChangeMode_changeModeBackColor)) setChangeModeBackColor(ta.getColor(R.styleable.ChangeMode_changeModeBackColor, -1))
+				//if (ta.hasValue(R.styleable.ChangeMode_changeModeListText)) setDrawableLeft(ta.getDrawable(R.styleable.ThreeDimensionalButton_drawableLeft))
+				//if (ta.hasValue(R.styleable.ChangeMode_changeModeMapText)) setDrawableRight(ta.getDrawable(R.styleable.ThreeDimensionalButton_drawableRight))
+				//if (ta.hasValue(R.styleable.ChangeMode_changeModeEnabled)) setDrawableTop(ta.getDrawable(R.styleable.ThreeDimensionalButton_drawableTop))
+				//if (ta.hasValue(R.styleable.ChangeMode_changeModeVisible)) setChangeModeTextColor(ta.getColorStateList(R.styleable.ChangeMode_changeModeVisible))
+			} finally {
+				ta.recycle()
+			}
+		}
+		run {
+			val ta = context.obtainStyledAttributes(attrs, R.styleable.VerticalList, 0, 0)
+			try {
+				if (ta.hasValue(R.styleable.VerticalList_verticalListBackColor)) setVerticalListBackColor(ta.getColor(R.styleable.VerticalList_verticalListBackColor, -1))
+			} finally {
+				ta.recycle()
+			}
+		}
+	}
+
+	fun setChangeModeTextColor(colorStateList: ColorStateList?) {
+		tvChangeMode?.setTextColor(colorStateList)
+	}
+
+	fun  setChangeModeTextColor(color: Int) {
+		tvChangeMode?.setTextColor(color)
+	}
+
+	fun  setChangeModeBackColor(color: Int) {
+		tvChangeMode?.setBackgroundColor(color)
+	}
+
+	fun  setVerticalListBackColor(color: Int) {
+		recyclerViewVertical?.setBackgroundColor(color)
 	}
 
 	fun setCallback(mCallback: Callbacks<T>) {
@@ -70,6 +103,11 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		getData()
 		initialize()
 		setListeners()
+	}
+
+	protected fun initialize() {
+		val rootView = View.inflate(context, R.layout.view_maplist, this)
+		initialize(rootView)
 	}
 
 	fun initialize(view: View) {
@@ -121,11 +159,6 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 				.forEach { it.dispose() }
 		controller.onDestroy()
 		vMap?.onDestroy()
-	}
-
-	protected fun initialize() {
-		val rootView = View.inflate(context, R.layout.view_maplist, this)
-		initialize(rootView)
 	}
 
 	fun populate() {

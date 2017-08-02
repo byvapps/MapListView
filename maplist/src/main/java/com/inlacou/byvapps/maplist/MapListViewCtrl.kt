@@ -81,6 +81,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 				configureClusterManager()
 				saveData()
 				update()
+				mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
 				if(model.initialPosition!=null)	MapUtils.moveMapTo(mMap!!, model.initialPosition)
 				else adjustBoundsToPoints()
 			}
@@ -233,30 +234,6 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 		adapterHorizontal!!.notifyDataSetChanged()
 		adapterVertical!!.notifyDataSetChanged()
-		Observable.timer(1000, TimeUnit.MILLISECONDS)
-				.subscribeOn(Schedulers.newThread())
-				.observeOn(AndroidSchedulers.mainThread())
-				.subscribe(object: Observer<Long> {
-					override fun onSubscribe(d: Disposable) {
-						disposables.add(d)
-					}
-
-					override fun onError(e: Throwable?) {
-						Log.d(DEBUG_TAG, "onError")
-					}
-
-					override fun onComplete() {
-						Log.d(DEBUG_TAG, "onComplete")
-					}
-
-					override fun onNext(t: Long?) {
-						Log.d(DEBUG_TAG + ".onNext", "padding1: " + view.recyclerViewHorizontal!!.height)
-						Log.d(DEBUG_TAG + ".onNext", "padding2: " + view.tvChangeMode!!.height)
-						mMap!!.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
-						//TODO Maybe more configuration for this? if(model.mapMode!=MapListViewModel.MapMode.EXPLORATION) selectMarker(0)
-					}
-
-				})
 	}
 
 	fun update() {

@@ -13,6 +13,18 @@
 		<item name="windowNoTitle">true</item>
 	</style>
 
+	<style name="MapTheme1">
+		<item name="changeModeBackColor">@color/colorPrimaryDark</item>
+		<item name="changeModeTextColor">@color/colorAccent</item>
+		<item name="verticalListBackColor">@color/colorPrimary</item>
+	</style>
+
+	<style name="MapTheme2">
+		<item name="changeModeBackColor">@color/colorAccent</item>
+		<item name="changeModeTextColor">@color/colorPrimaryDark</item>
+		<item name="verticalListBackColor">@color/colorPrimary</item>
+	</style>
+
 	<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <declare-styleable name="ChangeMode">
+        <attr name="changeModeTextSize" format="dimension|reference"/>
+        <attr name="changeModeTextColor" format="color|reference"/>
+        <attr name="changeModeBackColor" format="color|reference"/>
+        <attr name="changeModeListText" format="string|reference"/>
+        <attr name="changeModeMapText" format="string|reference"/>
+        <attr name="changeModeEnabled" format="boolean"/>
+        <attr name="changeModeVisible" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="VerticalList">
+        <attr name="verticalListBackColor" format="color|reference"/>
+    </declare-styleable>
+</resources>
