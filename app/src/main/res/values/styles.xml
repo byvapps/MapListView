@@ -13,16 +13,22 @@
 		<item name="windowNoTitle">true</item>
 	</style>
 
+	<!--Set general Map Theme-->
 	<style name="MapTheme1">
-		<item name="changeModeBackColor">@color/colorPrimaryDark</item>
-		<item name="changeModeTextColor">@color/colorAccent</item>
 		<item name="verticalListBackColor">@color/colorPrimary</item>
+		<!--This styles slightly the change mode button, and has priority over complete theme customization-->
+		<!--<item name="changeModeBackColor">@color/colorPrimaryDark</item>-->
+		<!--<item name="changeModeTextColor">@color/colorAccent</item>-->
 	</style>
 
-	<style name="MapTheme2">
-		<item name="changeModeBackColor">@color/colorAccent</item>
-		<item name="changeModeTextColor">@color/colorPrimaryDark</item>
-		<item name="verticalListBackColor">@color/colorPrimary</item>
+	<!--This completely styles the change mode button-->
+	<style name="mapListChangeModeButtonTheme">
+		<item name="android:textColor">@color/red</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">32sp</item>
+		<item name="android:padding">@dimen/mapList_general_all</item>
+		<item name="android:background">@color/mapList_change_mode_background</item>
+		<item name="android:gravity">center_horizontal</item>
 	</style>
 
 	<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
