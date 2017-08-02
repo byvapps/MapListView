@@ -19,7 +19,6 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 /**
@@ -281,12 +280,17 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	fun setClusterMinSize(min: Int){
-		(clusterManager?.renderer as MyRenderer).minimun = min
+		(clusterManager?.renderer as MyRenderer).minimum = min
 		clusterManager?.cluster()
 	}
 
 	fun setMoveCameraOnMarkerFocusChange(b: Boolean) {
 		moveCameraOnMarkerFocusChange = b
+	}
+
+	fun setOnBeforeClusterRenderedListener(clusterRenderedListener: MyRenderer.onBeforeClusterRenderedListener) {
+		(clusterManager?.renderer as MyRenderer).clusterRenderedListener = clusterRenderedListener
+		clusterManager?.cluster()
 	}
 
 }

@@ -12,6 +12,7 @@ import android.widget.TextView
 
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLngBounds
+import com.inlacou.byvapps.galdakao.clustering.MyRenderer
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
 import com.inlacou.byvapps.maplist.R
 import io.reactivex.Observer
@@ -97,6 +98,10 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 
 	fun setClusteringEnabled(b: Boolean = true){
 		controller.setClusteringEnabled(b)
+	}
+
+	fun setOnBeforeClusterRenderedListener(clusterRenderedListener: MyRenderer.onBeforeClusterRenderedListener){
+		controller.setOnBeforeClusterRenderedListener(clusterRenderedListener)
 	}
 
 	fun setClusterMinSize(min: Int){

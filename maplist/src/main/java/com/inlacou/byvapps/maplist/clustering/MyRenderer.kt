@@ -26,7 +26,7 @@ class MyRenderer(
 	var unselected_marker_id = R.drawable.pin
 	var centerPin = false
 	var clusterRenderedListener: onBeforeClusterRenderedListener? = null
-	var minimun: Int = 5
+	var minimum: Int = 5
 	var active: Boolean = true
 
 	override fun onBeforeClusterItemRendered(marker: SelectableMarker, markerOptions: MarkerOptions) {
@@ -68,7 +68,7 @@ class MyRenderer(
 	}
 
 	override fun shouldRenderAsCluster(cluster: Cluster<SelectableMarker>): Boolean {
-		return active && cluster.size >= minimun
+		return active && cluster.size >= minimum
 	}
 
 	interface onBeforeClusterRenderedListener {

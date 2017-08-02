@@ -11,8 +11,13 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.maps.android.clustering.Cluster
+import com.inlacou.byvapps.galdakao.clustering.MyRenderer
+import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
 import com.inlacou.byvapps.galdakao.general.common.MapUtils
 import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListView
 import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListViewModel
@@ -21,6 +26,9 @@ import com.inlacou.byvapps.maplistlib.adapter.EnterpriseRvAdapter
 import com.inlacou.byvapps.maplistlib.business.ExampleItem
 import com.inlacou.byvapps.maplistlib.ui.views.ExampleItemViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import android.graphics.Bitmap
+import com.google.maps.android.ui.IconGenerator
+
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -118,8 +126,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 				get() = initialPosition
 			override fun onReady() {
 				mapList.setClusteringEnabled(true)
-				mapList.setClusterMinSize(15)
+				mapList.setClusterMinSize(5)
 				mapList.setMoveCameraOnMarkerFocusChange(false)
+				mapList.setOnBeforeClusterRenderedListener(object: MyRenderer.onBeforeClusterRenderedListener{
+					override fun onBeforeClusterRendered(cluster: Cluster<SelectableMarker>, markerOptions: MarkerOptions): Boolean {
+						val icon = IconGenerator(applicationContext).makeIcon(cluster.size.toString())
+						markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon))
+						return true
+					}
+				})
 			}
 		})
 		mapList.getData()
