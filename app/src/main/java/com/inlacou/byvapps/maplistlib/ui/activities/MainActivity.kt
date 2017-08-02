@@ -35,33 +35,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		setContentView(R.layout.activity_main)
 		setSupportActionBar(toolbar)
 
+		//MapList
 		val initialPosition = MapUtils.toBounds(LatLng(0.0,0.0), 100.0)
 		val items = mutableListOf<ExampleItem>()
 		items.add(ExampleItem(43.2680085,-2.9222963))
 		items.add(ExampleItem(43.2640709,-2.9431234))
 		items.add(ExampleItem(43.3667236,-3.0121161))
 		items.add(ExampleItem(43.2659541,-2.9321773))
-
+		//4
 		items.add(ExampleItem(43.3680085,-2.9222963))
 		items.add(ExampleItem(43.3640709,-2.9431234))
 		items.add(ExampleItem(43.4667236,-3.0121161))
 		items.add(ExampleItem(43.3659541,-2.9321773))
-
+		//8
 		items.add(ExampleItem(43.1680085,-2.9222963))
 		items.add(ExampleItem(43.1640709,-2.9431234))
 		items.add(ExampleItem(43.1667236,-3.0121161))
 		items.add(ExampleItem(43.1659541,-2.9321773))
-
+		//12
 		items.add(ExampleItem(43.2880085,-2.9222963))
 		items.add(ExampleItem(43.2840709,-2.9431234))
 		items.add(ExampleItem(43.3867236,-3.0121161))
 		items.add(ExampleItem(43.2859541,-2.9321773))
-
-		items.add(ExampleItem(43.2480085,-2.9222963))
+		//16
+		/*items.add(ExampleItem(43.2480085,-2.9222963))
 		items.add(ExampleItem(43.2440709,-2.9431234))
 		items.add(ExampleItem(43.3467236,-3.0121161))
 		items.add(ExampleItem(43.2459541,-2.9321773))
-
 
 		items.add(ExampleItem(43.3680085,-2.8222963))
 		items.add(ExampleItem(43.3640709,-2.8431234))
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.2480085,-3.0222963))
 		items.add(ExampleItem(43.2440709,-3.0431234))
 		items.add(ExampleItem(43.3467236,-3.1121161))
-		items.add(ExampleItem(43.2459541,-3.0321773))
+		items.add(ExampleItem(43.2459541,-3.0321773))*/
 
 		val mapModel = MapListViewModel(itemList = items)
 
@@ -116,8 +116,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 				get() = adapterVertical
 			override val defaultLocation: LatLngBounds
 				get() = initialPosition
+			override fun onReady() {
+				mapList.setClusteringEnabled(true)
+				mapList.setClusterMinSize(15)
+			}
 		})
 		mapList.getData()
+
+		mapList.onCreate(savedInstanceState)
+		///MapList
 
 		fab.setOnClickListener { view ->
 			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -130,12 +137,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		toggle.syncState()
 
 		nav_view.setNavigationItemSelectedListener(this)
-
-		mapList.onCreate(savedInstanceState)
-
-		//mapList.setChangeModeTextColor(ResourcesCompat.getColor(resources, R.color.red, null))
-		//mapList.setChangeModeTextColor(ResourcesCompat.getColor(resources, R.color.blue, null))
-		//mapList.setChangeModeTextColor(ResourcesCompat.getColor(resources, R.color.green, null))
 	}
 
 	override fun onPause() {

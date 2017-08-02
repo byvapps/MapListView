@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  * Created by inlacou on 14/07/17.
  */
 class MapListView<T: MapListElementModel> : FrameLayout {
-	private var mCallback: Callbacks<T>? = null
+	internal var mCallback: Callbacks<T>? = null
 	private var cont: Context? = null
 
 	//MapList
@@ -93,6 +93,14 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 
 	fun  setVerticalListBackColor(color: Int) {
 		recyclerViewVertical?.setBackgroundColor(color)
+	}
+
+	fun setClusteringEnabled(b: Boolean = true){
+		controller.setClusteringEnabled(b)
+	}
+
+	fun setClusterMinSize(min: Int){
+		controller.setClusterMinSize(min)
 	}
 
 	fun setCallback(mCallback: Callbacks<T>) {
@@ -217,6 +225,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		val horizontalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 		val verticalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 		val defaultLocation: LatLngBounds
+		fun onReady()
 	}
 
 	companion object {

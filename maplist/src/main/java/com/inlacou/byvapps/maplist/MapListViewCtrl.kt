@@ -84,6 +84,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 				mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
 				if(model.initialPosition!=null)	MapUtils.moveMapTo(mMap!!, model.initialPosition)
 				else adjustBoundsToPoints()
+				view.mCallback?.onReady()
 			}
 		}
 	}
@@ -272,4 +273,15 @@ class MapListViewCtrl<T: MapListElementModel> {
 				.map { disposables[it] }
 				.forEach { it.dispose() }
 	}
+
+	fun setClusteringEnabled(b: Boolean = true){
+		(clusterManager?.renderer as MyRenderer).active = b
+		clusterManager?.cluster()
+	}
+
+	fun setClusterMinSize(min: Int){
+		(clusterManager?.renderer as MyRenderer).minimun = min
+		clusterManager?.cluster()
+	}
+
 }
