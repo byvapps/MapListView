@@ -1,4 +1,5 @@
 # MapListView
+[![](https://jitpack.io/v/byvapps/ImageCarroussel.svg)](https://jitpack.io/#byvapps/MapListView)
 
 Add it to your layout:
 ```xml
