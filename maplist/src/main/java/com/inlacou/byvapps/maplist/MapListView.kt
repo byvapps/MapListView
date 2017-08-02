@@ -110,6 +110,11 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 
 	fun setCallback(mCallback: Callbacks<T>) {
 		this.mCallback = mCallback
+		model = mCallback.data
+		controller = MapListViewCtrl(view = this, model = model,
+				horizontalAdapter = mCallback.horizontalAdapter,
+				verticalAdapter = mCallback.verticalAdapter)
+		onModeChanged()
 	}
 
 	fun setMoveCameraOnMarkerFocusChange(b: Boolean) {
@@ -117,7 +122,6 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	}
 
 	private fun init() {
-		getData()
 		initialize()
 		setListeners()
 	}
@@ -133,16 +137,6 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		recyclerViewVertical = view.findViewById(R.id.recyclerview_vertical)
 		tvChangeMode = view.findViewById(R.id.change_mode)
 		vMap = view.findViewById(R.id.map)
-	}
-
-	fun getData() {
-		if (mCallback != null) {
-			model = mCallback!!.data
-			controller = MapListViewCtrl(view = this, model = model,
-					horizontalAdapter = mCallback!!.horizontalAdapter,
-					verticalAdapter = mCallback!!.verticalAdapter)
-			onModeChanged()
-		}
 	}
 
 	fun update(){

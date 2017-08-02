@@ -137,7 +137,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 				})
 			}
 		})
-		mapList.getData()
 
 		mapList.onCreate(savedInstanceState)
 		///MapList
