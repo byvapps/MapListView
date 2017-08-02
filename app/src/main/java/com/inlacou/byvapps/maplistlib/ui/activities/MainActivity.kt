@@ -42,6 +42,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.3667236,-3.0121161))
 		items.add(ExampleItem(43.2659541,-2.9321773))
 
+		items.add(ExampleItem(43.3680085,-2.9222963))
+		items.add(ExampleItem(43.3640709,-2.9431234))
+		items.add(ExampleItem(43.4667236,-3.0121161))
+		items.add(ExampleItem(43.3659541,-2.9321773))
+
+		items.add(ExampleItem(43.1680085,-2.9222963))
+		items.add(ExampleItem(43.1640709,-2.9431234))
+		items.add(ExampleItem(43.1667236,-3.0121161))
+		items.add(ExampleItem(43.1659541,-2.9321773))
+
+		items.add(ExampleItem(43.2880085,-2.9222963))
+		items.add(ExampleItem(43.2840709,-2.9431234))
+		items.add(ExampleItem(43.3867236,-3.0121161))
+		items.add(ExampleItem(43.2859541,-2.9321773))
+
+		items.add(ExampleItem(43.2480085,-2.9222963))
+		items.add(ExampleItem(43.2440709,-2.9431234))
+		items.add(ExampleItem(43.3467236,-3.0121161))
+		items.add(ExampleItem(43.2459541,-2.9321773))
+
+
+		items.add(ExampleItem(43.3680085,-2.8222963))
+		items.add(ExampleItem(43.3640709,-2.8431234))
+		items.add(ExampleItem(43.4667236,-2.9121161))
+		items.add(ExampleItem(43.3659541,-2.8321773))
+
+		items.add(ExampleItem(43.1680085,-3.0222963))
+		items.add(ExampleItem(43.1640709,-3.0431234))
+		items.add(ExampleItem(43.1667236,-3.1121161))
+		items.add(ExampleItem(43.1659541,-3.0321773))
+
+		items.add(ExampleItem(43.2880085,-2.7222963))
+		items.add(ExampleItem(43.2840709,-2.7431234))
+		items.add(ExampleItem(43.3867236,-2.8121161))
+		items.add(ExampleItem(43.2859541,-2.7321773))
+
+		items.add(ExampleItem(43.2480085,-3.0222963))
+		items.add(ExampleItem(43.2440709,-3.0431234))
+		items.add(ExampleItem(43.3467236,-3.1121161))
+		items.add(ExampleItem(43.2459541,-3.0321773))
+
 		val mapModel = MapListViewModel(itemList = items)
 
 		mapList = findViewById<MapListView<ExampleItem>>(R.id.maplist)
