@@ -25,9 +25,9 @@
 	<style name="mapListChangeModeButtonTheme">
 		<item name="android:textColor">@color/red</item>
 		<item name="android:textStyle">bold</item>
-		<item name="android:textSize">32sp</item>
-		<item name="android:padding">@dimen/mapList_general_all</item>
-		<item name="android:background">@color/mapList_change_mode_background</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:padding">@dimen/general_all_half</item>
+		<item name="android:background">@color/white</item>
 		<item name="android:gravity">center_horizontal</item>
 	</style>
 

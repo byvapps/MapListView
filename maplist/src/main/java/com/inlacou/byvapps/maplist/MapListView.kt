@@ -107,6 +107,10 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		this.mCallback = mCallback
 	}
 
+	fun setMoveCameraOnMarkerFocusChange(b: Boolean) {
+		controller.setMoveCameraOnMarkerFocusChange(b)
+	}
+
 	private fun init() {
 		getData()
 		initialize()
@@ -235,4 +239,5 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	fun setMarkers(pin_selected: Int, pin_unselected: Int) {
 		controller.setMarkers(pin_selected, pin_unselected)
 	}
+
 }

@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 			override fun onReady() {
 				mapList.setClusteringEnabled(true)
 				mapList.setClusterMinSize(15)
+				mapList.setMoveCameraOnMarkerFocusChange(false)
 			}
 		})
 		mapList.getData()

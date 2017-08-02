@@ -43,6 +43,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 
 	private var selected_marker_id: Int = R.drawable.pin_selected
 	private var unselected_marker_id: Int = R.drawable.pin
+	private var moveCameraOnMarkerFocusChange: Boolean = true
 	///MapList
 
 	//RX
@@ -125,7 +126,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 
 		clusterManager?.setOnClusterItemClickListener { marker ->
 			scrollTo(marker.position)
-			selectMarker(marker, model.mapMode!=MapListViewModel.MapMode.EXPLORATION)
+			selectMarker(marker, moveCameraOnMarkerFocusChange)
 			true
 		}
 
@@ -221,7 +222,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 				.findFirstCompletelyVisibleItemPosition()
 		if (position >= 0 && position != currentPosition) {
 			currentPosition = position
-			selectMarker(currentPosition, model.mapMode!=MapListViewModel.MapMode.EXPLORATION)
+			selectMarker(currentPosition, moveCameraOnMarkerFocusChange)
 		}
 	}
 
@@ -282,6 +283,10 @@ class MapListViewCtrl<T: MapListElementModel> {
 	fun setClusterMinSize(min: Int){
 		(clusterManager?.renderer as MyRenderer).minimun = min
 		clusterManager?.cluster()
+	}
+
+	fun setMoveCameraOnMarkerFocusChange(b: Boolean) {
+		moveCameraOnMarkerFocusChange = b
 	}
 
 }
