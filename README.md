@@ -112,7 +112,10 @@ override fun onStop() { //Google Maps things
     mapList.onStop()
 }
 ```
-
+Oh, and dont forget to add your Google Maps API key!
+```xml
+<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_KEY_HERE</string>
+```
 
 
 
