@@ -227,7 +227,6 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		val data: MapListViewModel<T>
 		val horizontalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 		val verticalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
-		val defaultLocation: LatLngBounds
 		fun onReady()
 	}
 

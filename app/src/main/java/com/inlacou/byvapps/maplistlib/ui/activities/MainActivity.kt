@@ -122,8 +122,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 				get() = adapterHorizontal
 			override val verticalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>
 				get() = adapterVertical
-			override val defaultLocation: LatLngBounds
-				get() = initialPosition
 			override fun onReady() {
 				mapList.setClusteringEnabled(true)
 				mapList.setClusterMinSize(5)
