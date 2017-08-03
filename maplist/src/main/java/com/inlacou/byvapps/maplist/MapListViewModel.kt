@@ -2,6 +2,7 @@ package com.inlacou.byvapps.galdakao.ui.views.common.maplist
 
 import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
+import com.inlacou.byvapps.maplist.MapListElementModel
 
 /**
  * Created by inlacou on 14/07/17.

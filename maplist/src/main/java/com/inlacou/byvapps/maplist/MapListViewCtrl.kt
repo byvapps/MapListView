@@ -13,6 +13,7 @@ import com.inlacou.byvapps.galdakao.clustering.MyRenderer
 import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
 import com.inlacou.byvapps.galdakao.general.common.MapUtils
 import com.inlacou.byvapps.galdakao.rx.GoogleMapCameraMoveObs
+import com.inlacou.byvapps.maplist.MapListElementModel
 import com.inlacou.byvapps.maplist.R
 import com.inlacou.byvapps.maplist.StartSnapHelper
 import io.reactivex.Observable
@@ -183,9 +184,9 @@ class MapListViewCtrl<T: MapListElementModel> {
 			if(renderer.selectedMarker!=marker) {
 				val mapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(marker)
 				val oldMapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(renderer.selectedMarker)
-				oldMapMarker?.setIcon(BitmapDescriptorFactory.fromResource(renderer.unselected_marker_id))
+				oldMapMarker?.setIcon(BitmapDescriptorFactory.fromResource(marker.item.markerResource ?: renderer.unselected_marker_id))
 				if(mapMarker!=null){
-					mapMarker.setIcon(BitmapDescriptorFactory.fromResource(renderer.selected_marker_id))
+					mapMarker.setIcon(BitmapDescriptorFactory.fromResource(marker.item.selectedMarkerResource ?: renderer.selected_marker_id))
 					renderer.selectedMarker = marker
 				}
 			}

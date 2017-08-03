@@ -2,6 +2,7 @@ package com.inlacou.byvapps.galdakao.clustering
 
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.clustering.ClusterItem
+import com.inlacou.byvapps.maplist.MapListElementModel
 
 /**
  * Created by inlacou on 27/06/17.
@@ -9,7 +10,7 @@ import com.google.maps.android.clustering.ClusterItem
 class SelectableMarker(
         val lat: Double
         , val lon: Double
-        , val item: Any
+        , val item: MapListElementModel
         , val position: Int
         , var selected: Boolean = false
 ) : ClusterItem {

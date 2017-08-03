@@ -36,11 +36,11 @@ class MyRenderer(
 		//val icon = mIconGenerator.makeIcon()
 		//markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon)).title(marker.enterprise.nombre)
 		if(marker.selected) {
-			markerOptions.icon(BitmapDescriptorFactory.fromResource(selected_marker_id))
+			markerOptions.icon(BitmapDescriptorFactory.fromResource(marker.item.selectedMarkerResource ?: selected_marker_id))
 					.zIndex(1.0f)
 			selectedMarker = marker
 		}else {
-			markerOptions.icon(BitmapDescriptorFactory.fromResource(unselected_marker_id))
+			markerOptions.icon(BitmapDescriptorFactory.fromResource(marker.item.markerResource ?: unselected_marker_id))
 		}
 		if(centerPin){
 			markerOptions.anchor(0.5f, 0.5f)

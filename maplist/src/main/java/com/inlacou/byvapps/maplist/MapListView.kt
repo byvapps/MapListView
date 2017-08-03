@@ -11,9 +11,9 @@ import android.widget.FrameLayout
 import android.widget.TextView
 
 import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.MyRenderer
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
+import com.inlacou.byvapps.maplist.MapListElementModel
 import com.inlacou.byvapps.maplist.R
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
