@@ -104,10 +104,10 @@ class MapListViewCtrl<T: MapListElementModel> {
 				.map { if(it.latitude is Double && it.longitude is Double){
 						LatLng(it.latitude as Double, it.longitude as Double)
 					}else{
-						LatLng((it.latitude as String).toDouble(), (it.longitude as Double).toDouble())
+						LatLng((it.latitude as String).toDouble(), (it.longitude as String).toDouble())
 					}
 				}
-				.forEach { llbb.include(LatLng(it.latitude as Double, it.longitude as Double)) }
+				.forEach { llbb.include(it) }
 		mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(llbb.build(), 32))
 	}
 
