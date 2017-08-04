@@ -101,6 +101,12 @@ class MapListViewCtrl<T: MapListElementModel> {
 		val llbb = LatLngBounds.Builder()
 		(0..model.itemList.size-1)
 				.map { model.itemList[it] }
+				.map { if(it.latitude is Double && it.longitude is Double){
+						LatLng(it.latitude as Double, it.longitude as Double)
+					}else{
+						LatLng((it.latitude as String).toDouble(), (it.longitude as Double).toDouble())
+					}
+				}
 				.forEach { llbb.include(LatLng(it.latitude as Double, it.longitude as Double)) }
 		mMap?.moveCamera(CameraUpdateFactory.newLatLngBounds(llbb.build(), 32))
 	}
