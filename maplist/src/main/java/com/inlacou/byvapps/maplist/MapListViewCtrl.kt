@@ -91,6 +91,9 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun adjustBoundsToPoints() {
+		if(model.itemList.size==0){
+			return
+		}
 		val llbb = LatLngBounds.Builder()
 		(0..model.itemList.size-1)
 				.map { model.itemList[it] }

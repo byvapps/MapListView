@@ -3,7 +3,6 @@ package com.inlacou.byvapps.maplistlib.ui.activities
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
-import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
 import com.inlacou.byvapps.galdakao.clustering.MyRenderer
@@ -22,11 +20,10 @@ import com.inlacou.byvapps.galdakao.general.common.MapUtils
 import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListView
 import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListViewModel
 import com.inlacou.byvapps.maplistlib.R
-import com.inlacou.byvapps.maplistlib.adapter.EnterpriseRvAdapter
+import com.inlacou.byvapps.maplistlib.adapter.ExampleRvAdapter
 import com.inlacou.byvapps.maplistlib.business.ExampleItem
 import com.inlacou.byvapps.maplistlib.ui.views.ExampleItemViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import android.graphics.Bitmap
 import com.google.maps.android.ui.IconGenerator
 
 
@@ -46,6 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		//MapList
 		val initialPosition = MapUtils.toBounds(LatLng(0.0,0.0), 100.0)
 		val items = mutableListOf<ExampleItem>()
+		//0
+		/*
 		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia_selected))
@@ -66,7 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin_farmacia_selected))
 		//16
-		/*items.add(ExampleItem(43.2480085,-2.9222963))
+		items.add(ExampleItem(43.2480085,-2.9222963))
 		items.add(ExampleItem(43.2440709,-2.9431234))
 		items.add(ExampleItem(43.3467236,-3.0121161))
 		items.add(ExampleItem(43.2459541,-2.9321773))
@@ -89,7 +88,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.2480085,-3.0222963))
 		items.add(ExampleItem(43.2440709,-3.0431234))
 		items.add(ExampleItem(43.3467236,-3.1121161))
-		items.add(ExampleItem(43.2459541,-3.0321773))*/
+		items.add(ExampleItem(43.2459541,-3.0321773))
+		*/
 
 		val mapModel = MapListViewModel(itemList = items)
 
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 				.map { items[it] }
 				.forEach { itemList.add(ExampleItemViewModel(it)) }
 
-		val callback = object : EnterpriseRvAdapter.Callbacks {
+		val callback = object : ExampleRvAdapter.Callbacks {
 			override fun onItemClick(item: ExampleItemViewModel) {
 				Log.d(DEBUG_TAG, "Not implemented") //TODO not implemented
 			}
@@ -110,10 +110,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 			}
 		}
 
-		val adapterHorizontal = EnterpriseRvAdapter(this, itemList = itemList,
-				orientation = EnterpriseRvAdapter.Orientation.HORIZONTAL, callbacks = callback)
-		val adapterVertical = EnterpriseRvAdapter(this, itemList = itemList,
-				orientation = EnterpriseRvAdapter.Orientation.VERTICAL, callbacks = callback)
+		val adapterHorizontal = ExampleRvAdapter(this, itemList = itemList,
+				orientation = ExampleRvAdapter.Orientation.HORIZONTAL, callbacks = callback)
+		val adapterVertical = ExampleRvAdapter(this, itemList = itemList,
+				orientation = ExampleRvAdapter.Orientation.VERTICAL, callbacks = callback)
 
 		mapList.setCallback(object: MapListView.Callbacks<ExampleItem>{
 			override val data: MapListViewModel<ExampleItem>

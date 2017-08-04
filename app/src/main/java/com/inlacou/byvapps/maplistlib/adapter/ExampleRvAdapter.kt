@@ -15,14 +15,14 @@ import com.inlacou.byvapps.maplistlib.ui.views.ExampleItemViewModel
 /**
  * Created by inlacou on 26/06/17.
  */
-class EnterpriseRvAdapter(private val context: Context,
-                          private val itemList: MutableList<ExampleItemViewModel>,
-                          private val orientation: Orientation = EnterpriseRvAdapter.Orientation.VERTICAL,
-                          private val callbacks: Callbacks) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ExampleRvAdapter(private val context: Context,
+                       private val itemList: MutableList<ExampleItemViewModel>,
+                       private val orientation: Orientation = ExampleRvAdapter.Orientation.VERTICAL,
+                       private val callbacks: Callbacks) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var lastAdded: Int = 0
 
     companion object {
-        private val DEBUG_TAG = EnterpriseRvAdapter::class.java.simpleName
+        private val DEBUG_TAG = ExampleRvAdapter::class.java.simpleName
     }
 
     init {
