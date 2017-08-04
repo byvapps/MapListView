@@ -9,9 +9,13 @@ import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import com.google.android.gms.maps.CameraUpdateFactory
 
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.MyRenderer
+import com.inlacou.byvapps.galdakao.general.common.MapUtils
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
 import com.inlacou.byvapps.maplist.MapListElementModel
 import com.inlacou.byvapps.maplist.R
@@ -236,6 +240,14 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 
 	fun setMarkers(pin_selected: Int, pin_unselected: Int) {
 		controller.setMarkers(pin_selected, pin_unselected)
+	}
+
+	fun moveToInitialPosition() {
+		controller.moveToInitialPosition()
+	}
+
+	fun adjustBoundsToPoints() {
+		controller.adjustBoundsToPoints()
 	}
 
 }
