@@ -250,6 +250,16 @@ class MapListViewCtrl<T: MapListElementModel> {
 			clusterManager?.clearItems()
 			(0..model.itemList.size - 1)
 					.map { model.itemList[it] }
+					.filter {
+						try{
+							it.latitude.toString().toDouble()
+							it.longitude.toString().toDouble()
+							true
+						}catch (nfe: NumberFormatException){
+							Log.e(DEBUG_TAG, "Invalid lat/lng on element: $it")
+							false
+						}
+					}
 					.forEachIndexed { index, item ->
 						val marker = SelectableMarker(
 								item.latitude.toString().toDouble(),
