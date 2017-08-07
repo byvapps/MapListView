@@ -249,7 +249,21 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 		adapterHorizontal!!.notifyDataSetChanged()
 		adapterVertical!!.notifyDataSetChanged()
-		mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
+		doOnMainThreadObs.delay(500, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(object: Observer<Int>{
+			override fun onSubscribe(d: Disposable) {
+				disposables.add(d)
+			}
+
+			override fun onNext(t: Int) {
+				mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
+			}
+
+			override fun onComplete() {
+			}
+
+			override fun onError(e: Throwable?) {
+			}
+		})
 	}
 
 	fun update() {

@@ -25,6 +25,9 @@ import com.inlacou.byvapps.maplistlib.business.ExampleItem
 import com.inlacou.byvapps.maplistlib.ui.views.ExampleItemViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.maps.android.ui.IconGenerator
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +38,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 	private lateinit var mapList: MapListView<ExampleItem>
 
+	private var items: MutableList<ExampleItem> = mutableListOf()
+	private var itemList: MutableList<ExampleItemViewModel> = mutableListOf()
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_main)
@@ -42,29 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 		//MapList
 		val initialPosition = MapUtils.toBounds(LatLng(0.0,0.0), 100.0)
-		val items = mutableListOf<ExampleItem>()
 		//0
-
-		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin_farmacia_selected))
-		//4
-		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin_farmacia_selected))
-		//8
-		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin_farmacia_selected))
-		//12
-		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin_farmacia_selected))
-		//16
 		/*
 		items.add(ExampleItem(43.2480085,-2.9222963))
 		items.add(ExampleItem(43.2440709,-2.9431234))
@@ -95,11 +79,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		val mapModel = MapListViewModel(itemList = items)
 
 		mapList = findViewById<MapListView<ExampleItem>>(R.id.maplist)
-
-		val itemList = mutableListOf<ExampleItemViewModel>()
-		(0..items.size-1)
-				.map { items[it] }
-				.forEach { itemList.add(ExampleItemViewModel(it)) }
 
 		val callback = object : ExampleRvAdapter.Callbacks {
 			override fun onItemClick(item: ExampleItemViewModel) {
@@ -151,6 +130,37 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		toggle.syncState()
 
 		nav_view.setNavigationItemSelectedListener(this)
+
+		Observable.timer(5000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe({ addItems() })
+	}
+
+	private fun addItems() {
+		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin_farmacia_selected))
+		//4
+		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin_farmacia_selected))
+		//8
+		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin_farmacia_selected))
+		//12
+		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin_farmacia_selected))
+
+		(0..items.size-1)
+				.map { items[it] }
+				.forEach { itemList.add(ExampleItemViewModel(it)) }
+
+		mapList.update()
+		mapList.adjustBoundsToPoints()
 	}
 
 	override fun onPause() {
