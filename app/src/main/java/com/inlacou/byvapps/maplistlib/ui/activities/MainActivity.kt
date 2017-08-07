@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		val initialPosition = MapUtils.toBounds(LatLng(0.0,0.0), 100.0)
 		val items = mutableListOf<ExampleItem>()
 		//0
-		/*
+
 		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia_selected))
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin_farmacia_selected))
 		//16
+		/*
 		items.add(ExampleItem(43.2480085,-2.9222963))
 		items.add(ExampleItem(43.2440709,-2.9431234))
 		items.add(ExampleItem(43.3467236,-3.0121161))
