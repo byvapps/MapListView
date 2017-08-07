@@ -193,7 +193,9 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 		disposables.add(doOnMainThreadObs.subscribe({
 			if(moveTo) MapUtils.moveMapTo(mMap!!, marker.lat, marker.lon, animate = true)
+			if(clusterManager==null){ return@subscribe }
 			val renderer = clusterManager!!.renderer as MyRenderer
+			if(renderer.selectedMarker==null){ return@subscribe }
 			if(renderer.selectedMarker!=marker) {
 				val mapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(marker)
 				val oldMapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(renderer.selectedMarker)
