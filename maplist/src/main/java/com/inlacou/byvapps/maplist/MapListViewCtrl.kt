@@ -249,6 +249,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 		adapterHorizontal!!.notifyDataSetChanged()
 		adapterVertical!!.notifyDataSetChanged()
+		mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
 	}
 
 	fun update() {
