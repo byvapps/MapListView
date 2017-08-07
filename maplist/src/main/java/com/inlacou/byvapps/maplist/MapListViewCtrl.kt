@@ -256,6 +256,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 
 			override fun onNext(t: Int) {
 				mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
+				clusterManager?.cluster()
 			}
 
 			override fun onComplete() {
@@ -297,7 +298,6 @@ class MapListViewCtrl<T: MapListElementModel> {
 					}
 
 			disposables.add(doOnMainThreadObs.subscribe({
-				clusterManager?.cluster()
 				onUpdated() }))
 		}
 	}
