@@ -25,6 +25,9 @@ import com.inlacou.byvapps.maplistlib.business.ExampleItem
 import com.inlacou.byvapps.maplistlib.ui.views.ExampleItemViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.maps.android.ui.IconGenerator
+import com.hulab.debugkit.DebugFunction
+import com.hulab.debugkit.DevTool
+import com.hulab.debugkit.DevToolFragment
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
@@ -132,6 +135,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		nav_view.setNavigationItemSelectedListener(this)
 
 		Observable.timer(5000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe({ addItems() })
+
+		debugKit()
+	}
+
+	private fun debugKit() {
+		val builder = DevTool.Builder(this)
+
+		builder.addFunction(object : DebugFunction() {
+			@Throws(Exception::class)
+			override fun call(): String {
+				log("do nothing")
+				return "did nothing"
+			}
+		})
+
+// optional, DevToolFragment.DevToolTheme.DARK is set by default
+		builder.setTheme(DevToolFragment.DevToolTheme.DARK)
+				.build()
 	}
 
 	private fun addItems() {

@@ -223,10 +223,17 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 	}
 
-	fun onModeChangeClick() {
-		when(model.displayMode){
-			MapListViewModel.DisplayMode.MAP -> model.displayMode = MapListViewModel.DisplayMode.LIST
-			MapListViewModel.DisplayMode.LIST -> model.displayMode = MapListViewModel.DisplayMode.MAP
+	fun changeMode(mode: MapListViewModel.DisplayMode? = null) {
+		if(mode==null) {
+			when (model.displayMode) {
+				MapListViewModel.DisplayMode.MAP -> model.displayMode = MapListViewModel.DisplayMode.LIST
+				MapListViewModel.DisplayMode.LIST -> model.displayMode = MapListViewModel.DisplayMode.MAP
+			}
+		}else{
+			when (mode) {
+				MapListViewModel.DisplayMode.MAP -> model.displayMode = MapListViewModel.DisplayMode.MAP
+				MapListViewModel.DisplayMode.LIST -> model.displayMode = MapListViewModel.DisplayMode.LIST
+			}
 		}
 		view.onModeChanged()
 	}

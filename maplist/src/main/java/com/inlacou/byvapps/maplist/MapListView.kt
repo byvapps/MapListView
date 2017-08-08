@@ -9,13 +9,9 @@ import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.google.android.gms.maps.CameraUpdateFactory
 
 import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.MyRenderer
-import com.inlacou.byvapps.galdakao.general.common.MapUtils
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
 import com.inlacou.byvapps.maplist.MapListElementModel
 import com.inlacou.byvapps.maplist.R
@@ -188,7 +184,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	}
 
 	private fun setListeners() {
-		tvChangeMode?.setOnClickListener(View.OnClickListener { controller.onModeChangeClick() })
+		tvChangeMode?.setOnClickListener(View.OnClickListener { controller.changeMode() })
 		RvScrollObs.create(recyclerViewHorizontal)
 				//.subscribeOn(Schedulers.newThread())
 				.observeOn(AndroidSchedulers.mainThread())
@@ -250,4 +246,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		controller.adjustBoundsToPoints()
 	}
 
+	fun changeMode(mode: MapListViewModel.DisplayMode? = null) {
+		controller.changeMode(mode)
+	}
 }
