@@ -195,7 +195,6 @@ class MapListViewCtrl<T: MapListElementModel> {
 			if(moveTo) MapUtils.moveMapTo(mMap!!, marker.lat, marker.lon, animate = true)
 			if(clusterManager==null){ return@subscribe }
 			val renderer = clusterManager!!.renderer as MyRenderer
-			if(renderer.selectedMarker==null){ return@subscribe }
 			if(renderer.selectedMarker!=marker) {
 				val mapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(marker)
 				val oldMapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(renderer.selectedMarker)
@@ -209,7 +208,6 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun selectMarker(position: Int? = null, moveTo: Boolean = true) {
-		Log.d(DEBUG_TAG+".selectMarker", "position: " + position)
 		try {
 			selectMarker(model.clusterItems[position ?: 0], moveTo)
 		}catch (ioobe: IndexOutOfBoundsException){}
