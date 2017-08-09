@@ -245,16 +245,16 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		model.initialPosition = initialPosition
 	}
 
-	fun moveToInitialPosition() {
-		controller.moveToInitialPosition()
+	fun moveToInitialPosition(): Boolean {
+		return controller.moveToInitialPosition()
 	}
 
-	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false) {
-		controller.moveMapTo(bounds, animate)
+	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false): Boolean {
+		return controller.moveMapTo(bounds, animate)
 	}
 
-	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false) {
-		controller.moveMapTo(latLng, zoom, animate)
+	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false): Boolean {
+		return controller.moveMapTo(latLng, zoom, animate)
 	}
 
 	fun adjustBoundsToPoints() {

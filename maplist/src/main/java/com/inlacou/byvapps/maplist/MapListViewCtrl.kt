@@ -91,8 +91,11 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 	}
 
-	fun moveToInitialPosition() {
-		if(model.initialPosition!=null) MapUtils.moveMapTo(mMap!!, model.initialPosition!!)
+	fun moveToInitialPosition(): Boolean {
+		if(model.initialPosition!=null) {
+			return MapUtils.moveMapTo(mMap!!, model.initialPosition!!)
+		}
+		return false
 	}
 
 	fun adjustBoundsToPoints() {
@@ -345,12 +348,12 @@ class MapListViewCtrl<T: MapListElementModel> {
 		mMap?.isMyLocationEnabled = b
 	}
 
-	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false){
-		MapUtils.moveMapTo(mMap, bounds, animate)
+	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false): Boolean {
+		return MapUtils.moveMapTo(mMap, bounds, animate)
 	}
 
-	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false){
-		MapUtils.moveMapTo(mMap, latLng.latitude, latLng.longitude, zoom, animate)
+	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false): Boolean {
+		return MapUtils.moveMapTo(mMap, latLng.latitude, latLng.longitude, zoom, animate)
 	}
 
 }

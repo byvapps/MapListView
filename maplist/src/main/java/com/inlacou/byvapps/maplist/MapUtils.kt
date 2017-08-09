@@ -14,9 +14,9 @@ import com.google.maps.android.SphericalUtil
 
 object MapUtils {
 
-    fun moveMapTo(mMap: GoogleMap?, bounds: LatLngBounds, animate: Boolean = false) {
+    fun moveMapTo(mMap: GoogleMap?, bounds: LatLngBounds, animate: Boolean = false): Boolean {
         if(mMap==null){
-            return
+            return false
         }
         val cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 16)
 	    if (animate) {
@@ -24,11 +24,12 @@ object MapUtils {
         } else {
             mMap.moveCamera(cameraUpdate)
         }
+	    return true
     }
 
-    fun moveMapTo(mMap: GoogleMap?, lat: Double, lon: Double, zoom: Float? = null, animate: Boolean = false) {
+    fun moveMapTo(mMap: GoogleMap?, lat: Double, lon: Double, zoom: Float? = null, animate: Boolean = false): Boolean {
 	    if(mMap==null){
-		    return
+		    return false
 	    }
 	    val cameraUpdate = CameraUpdateFactory.newLatLngZoom(
                 LatLng(
@@ -41,6 +42,7 @@ object MapUtils {
         } else {
             mMap.moveCamera(cameraUpdate)
         }
+	    return true
     }
 
     /**
