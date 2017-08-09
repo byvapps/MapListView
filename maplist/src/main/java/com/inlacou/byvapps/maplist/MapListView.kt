@@ -241,14 +241,6 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		controller.setMarkers(pin_selected, pin_unselected)
 	}
 
-	fun setInitialPosition(initialPosition: LatLngBounds) {
-		model.initialPosition = initialPosition
-	}
-
-	fun moveToInitialPosition(): Boolean {
-		return controller.moveToInitialPosition()
-	}
-
 	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false): Boolean {
 		return controller.moveMapTo(bounds, animate)
 	}

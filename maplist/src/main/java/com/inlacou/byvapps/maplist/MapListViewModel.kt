@@ -1,5 +1,6 @@
 package com.inlacou.byvapps.galdakao.ui.views.common.maplist
 
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
 import com.inlacou.byvapps.maplist.MapListElementModel
@@ -9,7 +10,6 @@ import com.inlacou.byvapps.maplist.MapListElementModel
  */
 data class MapListViewModel<T: MapListElementModel>(val itemList: MutableList<T>
                                                     , val backupList: MutableList<T> = mutableListOf()
-                                                    , var initialPosition: LatLngBounds? = null
                                                     , var displayMode: DisplayMode = DisplayMode.MAP
                                                     , val clusterItems: MutableList<SelectableMarker> = mutableListOf<SelectableMarker>()
                                                     , val mapMode: MapMode = MapMode.FINITE) {

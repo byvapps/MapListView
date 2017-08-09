@@ -84,18 +84,9 @@ class MapListViewCtrl<T: MapListElementModel> {
 				saveData()
 				update()
 				mMap?.setPadding(0,0, 0,view.recyclerViewHorizontal!!.height+view.tvChangeMode!!.height)
-				if(model.initialPosition!=null)	moveToInitialPosition()
-				else adjustBoundsToPoints()
 				view.mCallback?.onReady()
 			}
 		}
-	}
-
-	fun moveToInitialPosition(): Boolean {
-		if(model.initialPosition!=null) {
-			return MapUtils.moveMapTo(mMap!!, model.initialPosition!!)
-		}
-		return false
 	}
 
 	fun adjustBoundsToPoints() {
