@@ -335,8 +335,9 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	@RequiresPermission(anyOf = arrayOf("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"))
-	fun setMyLocationEnabled(b: Boolean){
-		mMap?.isMyLocationEnabled = b
+	fun setMyLocationEnabled(enabled: Boolean, show: Boolean){
+		mMap?.isMyLocationEnabled = enabled
+		mMap?.uiSettings?.isMyLocationButtonEnabled = show
 	}
 
 	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false): Boolean {
