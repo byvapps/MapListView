@@ -258,7 +258,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	}
 
 	@RequiresPermission(anyOf = arrayOf("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"))
-	fun setMyLocationEnabled(enabled: Boolean, show: Boolean){
+	fun setMyLocationEnabled(enabled: Boolean, show: Boolean = true){
 		controller.setMyLocationEnabled(enabled, show)
 	}
 }
