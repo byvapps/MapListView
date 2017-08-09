@@ -345,4 +345,12 @@ class MapListViewCtrl<T: MapListElementModel> {
 		mMap?.isMyLocationEnabled = b
 	}
 
+	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false){
+		MapUtils.moveMapTo(mMap, bounds, animate)
+	}
+
+	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false){
+		MapUtils.moveMapTo(mMap, latLng.latitude, latLng.longitude, zoom, animate)
+	}
+
 }

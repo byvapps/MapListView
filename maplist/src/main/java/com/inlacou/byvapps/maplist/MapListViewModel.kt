@@ -9,7 +9,7 @@ import com.inlacou.byvapps.maplist.MapListElementModel
  */
 data class MapListViewModel<T: MapListElementModel>(val itemList: MutableList<T>
                                                     , val backupList: MutableList<T> = mutableListOf()
-                                                    , val initialPosition: LatLngBounds? = null
+                                                    , var initialPosition: LatLngBounds? = null
                                                     , var displayMode: DisplayMode = DisplayMode.MAP
                                                     , val clusterItems: MutableList<SelectableMarker> = mutableListOf<SelectableMarker>()
                                                     , val mapMode: MapMode = MapMode.FINITE) {

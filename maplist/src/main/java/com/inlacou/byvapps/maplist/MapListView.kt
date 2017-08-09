@@ -12,6 +12,8 @@ import android.widget.FrameLayout
 import android.widget.TextView
 
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.inlacou.byvapps.galdakao.clustering.MyRenderer
 import com.inlacou.byvapps.galdakao.rx.RvScrollObs
 import com.inlacou.byvapps.maplist.MapListElementModel
@@ -239,8 +241,20 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		controller.setMarkers(pin_selected, pin_unselected)
 	}
 
+	fun setInitialPosition(initialPosition: LatLngBounds) {
+		model.initialPosition = initialPosition
+	}
+
 	fun moveToInitialPosition() {
 		controller.moveToInitialPosition()
+	}
+
+	fun moveMapTo(bounds: LatLngBounds, animate: Boolean = false) {
+		controller.moveMapTo(bounds, animate)
+	}
+
+	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false) {
+		controller.moveMapTo(latLng, zoom, animate)
 	}
 
 	fun adjustBoundsToPoints() {
