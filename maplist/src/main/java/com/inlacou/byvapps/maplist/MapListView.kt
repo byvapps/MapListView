@@ -3,6 +3,7 @@ package com.inlacou.byvapps.galdakao.ui.views.common.maplist
 import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.annotation.RequiresPermission
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.Log
@@ -248,5 +249,10 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 
 	fun changeMode(mode: MapListViewModel.DisplayMode? = null) {
 		controller.changeMode(mode)
+	}
+
+	@RequiresPermission(anyOf = arrayOf("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"))
+	fun setMyLocationEnabled(b: Boolean){
+		controller.setMyLocationEnabled(b)
 	}
 }

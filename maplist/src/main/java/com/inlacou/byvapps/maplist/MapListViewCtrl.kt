@@ -1,5 +1,6 @@
 package com.inlacou.byvapps.galdakao.ui.views.common.maplist
 
+import android.support.annotation.RequiresPermission
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -337,6 +338,11 @@ class MapListViewCtrl<T: MapListElementModel> {
 	fun setOnBeforeClusterRenderedListener(clusterRenderedListener: MyRenderer.onBeforeClusterRenderedListener) {
 		(clusterManager?.renderer as MyRenderer).clusterRenderedListener = clusterRenderedListener
 		clusterManager?.cluster()
+	}
+
+	@RequiresPermission(anyOf = arrayOf("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"))
+	fun setMyLocationEnabled(b: Boolean){
+		mMap?.isMyLocationEnabled = b
 	}
 
 }
