@@ -1,4 +1,4 @@
-package com.inlacou.byvapps.galdakao.ui.views.common.maplist
+package com.inlacou.byvapps.maplist
 
 import android.support.annotation.RequiresPermission
 import android.support.v7.widget.LinearLayoutManager
@@ -10,13 +10,9 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.maps.android.clustering.ClusterManager
-import com.inlacou.byvapps.galdakao.clustering.MyRenderer
-import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
-import com.inlacou.byvapps.galdakao.general.common.MapUtils
-import com.inlacou.byvapps.galdakao.rx.GoogleMapCameraMoveObs
-import com.inlacou.byvapps.maplist.MapListElementModel
-import com.inlacou.byvapps.maplist.R
-import com.inlacou.byvapps.maplist.StartSnapHelper
+import com.inlacou.byvapps.maplist.clustering.MyRenderer
+import com.inlacou.byvapps.maplist.clustering.SelectableMarker
+import com.inlacou.byvapps.maplist.rx.GoogleMapCameraMoveObs
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -107,8 +103,8 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	internal fun saveData() {
-		Log.d(DEBUG_TAG+".saveData", "model.itemList.size: " + model.itemList.size)
-		Log.d(DEBUG_TAG+".saveData", "model.backupList.size: " + model.backupList.size)
+		Log.d(DEBUG_TAG +".saveData", "model.itemList.size: " + model.itemList.size)
+		Log.d(DEBUG_TAG +".saveData", "model.backupList.size: " + model.backupList.size)
 		model.backupList.clear()
 		(0..model.itemList.size-1)
 				.map { model.itemList[it] }
@@ -116,7 +112,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun configureClusterManager() {
-		clusterManager = ClusterManager<SelectableMarker>(view.context, mMap)
+		clusterManager = ClusterManager(view.context, mMap)
 		clusterManager?.renderer = MyRenderer(context = view.context, map = mMap!!, clusterManager = clusterManager)
 		(clusterManager?.renderer as MyRenderer).selected_marker_id = selected_marker_id
 		(clusterManager?.renderer as MyRenderer).unselected_marker_id = unselected_marker_id
@@ -151,7 +147,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 				val vRegion = mMap!!.projection.visibleRegion
 				val shouthWest = vRegion.latLngBounds.southwest
 				val northEast = vRegion.latLngBounds.northeast
-				if(model.mapMode==MapListViewModel.MapMode.EXPLORATION) {
+				if(model.mapMode== MapListViewModel.MapMode.EXPLORATION) {
 					applyFilter(northEast, shouthWest)
 				}
 			}
@@ -170,12 +166,12 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun applyFilter(northEast: LatLng, shouthWest: LatLng) {
-		Log.d(DEBUG_TAG+".applyFilter", "northEast: " + northEast.latitude + ", " + northEast.longitude)
-		Log.d(DEBUG_TAG+".applyFilter", "shouthWest: " + shouthWest.latitude + ", " + shouthWest.longitude)
+		Log.d(DEBUG_TAG +".applyFilter", "northEast: " + northEast.latitude + ", " + northEast.longitude)
+		Log.d(DEBUG_TAG +".applyFilter", "shouthWest: " + shouthWest.latitude + ", " + shouthWest.longitude)
 		model.itemList.clear()
 		(0..model.backupList.size-1)
 				.map { model.backupList[it] }
-				.filter { Log.d(DEBUG_TAG+".applyFilter", "item: " + it.latitude + ", " + it.longitude)
+				.filter { Log.d(DEBUG_TAG +".applyFilter", "item: " + it.latitude + ", " + it.longitude)
 						it.latitude.toString().toDouble()<northEast.latitude && it.latitude.toString().toDouble()>shouthWest.latitude &&
 						it.longitude.toString().toDouble()<northEast.longitude && it.longitude.toString().toDouble()>shouthWest.longitude}
 				.forEach { model.itemList.add(it) }
@@ -310,7 +306,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	fun onDestroy() {
-		(0..disposables.size-1)
+		(0 until disposables.size)
 				.map { disposables[it] }
 				.forEach { it.dispose() }
 	}

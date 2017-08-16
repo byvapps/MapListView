@@ -1,4 +1,4 @@
-package com.inlacou.byvapps.galdakao.general.common
+package com.inlacou.byvapps.maplist
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

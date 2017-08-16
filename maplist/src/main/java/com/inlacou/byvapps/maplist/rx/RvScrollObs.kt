@@ -1,4 +1,4 @@
-package com.inlacou.byvapps.galdakao.rx
+package com.inlacou.byvapps.maplist.rx
 
 import android.support.v7.widget.RecyclerView
 

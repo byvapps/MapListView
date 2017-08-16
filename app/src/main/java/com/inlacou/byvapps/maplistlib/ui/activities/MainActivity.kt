@@ -14,11 +14,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
-import com.inlacou.byvapps.galdakao.clustering.MyRenderer
-import com.inlacou.byvapps.galdakao.clustering.SelectableMarker
-import com.inlacou.byvapps.galdakao.general.common.MapUtils
-import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListView
-import com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListViewModel
 import com.inlacou.byvapps.maplistlib.R
 import com.inlacou.byvapps.maplistlib.adapter.ExampleRvAdapter
 import com.inlacou.byvapps.maplistlib.business.ExampleItem
@@ -28,6 +23,11 @@ import com.google.maps.android.ui.IconGenerator
 import com.hulab.debugkit.DebugFunction
 import com.hulab.debugkit.DevTool
 import com.hulab.debugkit.DevToolFragment
+import com.inlacou.byvapps.maplist.MapListView
+import com.inlacou.byvapps.maplist.MapListViewModel
+import com.inlacou.byvapps.maplist.MapUtils
+import com.inlacou.byvapps.maplist.clustering.MyRenderer
+import com.inlacou.byvapps.maplist.clustering.SelectableMarker
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
@@ -176,10 +176,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
 		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
 
-		(0..items.size-1)
+		(0 until items.size)
 				.map { items[it] }
 				.forEach { itemList.add(ExampleItemViewModel(it)) }
 
+
+		mapList.modeChangeListener = object: MapListView.ModeChangedListener{
+			override fun onModeChanged(mode: MapListViewModel.DisplayMode) {
+				Log.d(DEBUG_TAG+".onModeChanged", "Mode changed to $mode")
+			}
+		}
 		mapList.update()
 		mapList.adjustBoundsToPoints()
 	}

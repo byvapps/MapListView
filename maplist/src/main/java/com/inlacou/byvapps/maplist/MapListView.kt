@@ -1,4 +1,4 @@
-package com.inlacou.byvapps.galdakao.ui.views.common.maplist
+package com.inlacou.byvapps.maplist
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -14,10 +14,8 @@ import android.widget.TextView
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import com.inlacou.byvapps.galdakao.clustering.MyRenderer
-import com.inlacou.byvapps.galdakao.rx.RvScrollObs
-import com.inlacou.byvapps.maplist.MapListElementModel
-import com.inlacou.byvapps.maplist.R
+import com.inlacou.byvapps.maplist.clustering.MyRenderer
+import com.inlacou.byvapps.maplist.rx.RvScrollObs
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -29,6 +27,7 @@ import java.util.concurrent.TimeUnit
  */
 class MapListView<T: MapListElementModel> : FrameLayout {
 	internal var mCallback: Callbacks<T>? = null
+	var modeChangeListener: ModeChangedListener? = null
 	private var cont: Context? = null
 
 	//MapList
@@ -168,7 +167,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	}
 
 	fun onDestroy() {
-		(0..disposables.size-1)
+		(0 until disposables.size)
 				.map { disposables[it] }
 				.forEach { it.dispose() }
 		controller.onDestroy()
@@ -194,7 +193,7 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 				.debounce(200, TimeUnit.MILLISECONDS)
 				.subscribe(object: Observer<RvScrollObs.Result>{
 					override fun onError(e: Throwable?) {
-						Log.d(DEBUG_TAG+".onError", "e: " + e)
+						Log.d(DEBUG_TAG +".onError", "e: " + e)
 					}
 
 					override fun onSubscribe(d: Disposable) {
@@ -217,11 +216,13 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 				tvChangeMode?.text = context.getString(R.string.See_on_list)
 				recyclerViewHorizontal?.visibility = View.VISIBLE
 				recyclerViewVertical?.visibility = View.GONE
+				modeChangeListener?.onModeChanged(MapListViewModel.DisplayMode.MAP)
 			}
 			MapListViewModel.DisplayMode.LIST -> {
 				tvChangeMode?.text = context.getString(R.string.See_on_map)
 				recyclerViewVertical?.visibility = View.VISIBLE
 				recyclerViewHorizontal?.visibility = View.GONE
+				modeChangeListener?.onModeChanged(MapListViewModel.DisplayMode.LIST)
 			}
 		}
 	}
@@ -260,5 +261,9 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 	@RequiresPermission(anyOf = arrayOf("android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"))
 	fun setMyLocationEnabled(enabled: Boolean, show: Boolean = true){
 		controller.setMyLocationEnabled(enabled, show)
+	}
+
+	interface ModeChangedListener {
+		fun onModeChanged(mode: MapListViewModel.DisplayMode)
 	}
 }

@@ -1,4 +1,4 @@
-package com.inlacou.byvapps.galdakao.clustering
+package com.inlacou.byvapps.maplist.clustering
 
 import android.content.Context
 import com.google.android.gms.maps.GoogleMap

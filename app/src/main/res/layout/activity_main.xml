@@ -31,7 +31,7 @@
 
 		</android.support.design.widget.AppBarLayout>
 
-		<com.inlacou.byvapps.galdakao.ui.views.common.maplist.MapListView
+		<com.inlacou.byvapps.maplist.MapListView
 			android:id="@+id/maplist"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
