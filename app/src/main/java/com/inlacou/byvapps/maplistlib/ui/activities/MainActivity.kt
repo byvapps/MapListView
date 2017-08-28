@@ -156,25 +156,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 	}
 
 	private fun addItems() {
-		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
 		//4
-		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin, R.drawable.pin_selected))
 		//8
-		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
 		//12
-		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin, R.drawable.pin_selected))
 
 		(0 until items.size)
 				.map { items[it] }

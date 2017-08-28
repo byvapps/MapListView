@@ -189,7 +189,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 			if(renderer.selectedMarker!=marker) {
 				val mapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(marker)
 				val oldMapMarker = (clusterManager!!.renderer as MyRenderer).getMarker(renderer.selectedMarker)
-				oldMapMarker?.setIcon(BitmapDescriptorFactory.fromResource(marker.item.markerResource ?: renderer.unselected_marker_id))
+				oldMapMarker?.setIcon(BitmapDescriptorFactory.fromResource(renderer.selectedMarker!!.item.markerResource ?: renderer.unselected_marker_id))
 				if(mapMarker!=null){
 					mapMarker.setIcon(BitmapDescriptorFactory.fromResource(marker.item.selectedMarkerResource ?: renderer.selected_marker_id))
 					renderer.selectedMarker = marker
