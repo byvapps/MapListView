@@ -169,7 +169,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 		Log.d(DEBUG_TAG +".applyFilter", "northEast: " + northEast.latitude + ", " + northEast.longitude)
 		Log.d(DEBUG_TAG +".applyFilter", "shouthWest: " + shouthWest.latitude + ", " + shouthWest.longitude)
 		model.itemList.clear()
-		(0..model.backupList.size-1)
+		(0 until model.backupList.size)
 				.map { model.backupList[it] }
 				.filter { Log.d(DEBUG_TAG +".applyFilter", "item: " + it.latitude + ", " + it.longitude)
 						it.latitude.toString().toDouble()<northEast.latitude && it.latitude.toString().toDouble()>shouthWest.latitude &&
@@ -200,9 +200,12 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun selectMarker(position: Int? = null, moveTo: Boolean = true) {
+		Log.e(DEBUG_TAG+".selectMarker", "position: $position | moveTo: $moveTo")
 		try {
 			selectMarker(model.clusterItems[position ?: 0], moveTo)
-		}catch (ioobe: IndexOutOfBoundsException){}
+		}catch (ioobe: IndexOutOfBoundsException){
+			Log.e(DEBUG_TAG+".selectMarker", "position: $position | moveTo: $moveTo | IndexOutOfBoundsException | ${model.clusterItems.size}")
+		}
 	}
 
 	fun scrollTo(position: Int) {
