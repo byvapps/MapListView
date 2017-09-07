@@ -29,4 +29,14 @@ class SelectableMarker(
     override fun getPosition(): LatLng {
         return LatLng(lat, lon)
     }
+
+	override fun toString(): String {
+		return "{" +
+                "lat: " + lat + "," +
+                "lon: " + lon + "," +
+                "item: " + item + "," +
+                "position: " + position + "," +
+                "selected: " + selected +
+                "}"
+	}
 }

@@ -116,6 +116,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 						return true
 					}
 				})
+				mapList.setMyLocationEnabled(true, true)
 			}
 		})
 

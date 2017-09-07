@@ -179,6 +179,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun selectMarker(marker: SelectableMarker?, moveTo: Boolean = true) {
+		Log.d(DEBUG_TAG+".selectMarker", "marker: $marker | moveTo: $moveTo")
 		if(marker==null || mMap==null){
 			return
 		}
