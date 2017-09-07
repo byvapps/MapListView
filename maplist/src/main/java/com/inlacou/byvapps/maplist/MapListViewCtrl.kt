@@ -200,7 +200,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 	}
 
 	private fun selectMarker(position: Int? = null, moveTo: Boolean = true) {
-		Log.e(DEBUG_TAG+".selectMarker", "position: $position | moveTo: $moveTo")
+		Log.d(DEBUG_TAG+".selectMarker", "position: $position | moveTo: $moveTo")
 		try {
 			selectMarker(model.clusterItems[position ?: 0], moveTo)
 		}catch (ioobe: IndexOutOfBoundsException){
