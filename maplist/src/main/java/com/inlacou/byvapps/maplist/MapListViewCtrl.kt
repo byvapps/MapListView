@@ -276,7 +276,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 			loading = true
 			model.clusterItems.clear()
 			clusterManager?.clearItems()
-			(0..model.itemList.size - 1)
+			(0 until model.itemList.size)
 					.map { model.itemList[it] }
 					.filter {
 						try{
@@ -285,6 +285,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 							true
 						}catch (nfe: NumberFormatException){
 							Log.e(DEBUG_TAG, "Invalid lat/lng on element: $it")
+							//TODO should filter it from other list too!
 							false
 						}
 					}
