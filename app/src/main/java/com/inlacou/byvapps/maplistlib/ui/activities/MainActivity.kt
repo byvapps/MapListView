@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -84,12 +85,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 		mapList = findViewById<MapListView<ExampleItem>>(R.id.maplist)
 
 		val callback = object : ExampleRvAdapter.Callbacks {
-			override fun onItemClick(item: ExampleItemViewModel) {
-				Log.d(DEBUG_TAG, "Not implemented") //TODO not implemented
-			}
-
-			override fun onItemDeleted(item: ExampleItemViewModel) {
-				Log.d(DEBUG_TAG, "Not implemented") //TODO not implemented
+			override fun onItemClick(item: ExampleItemViewModel, orientation: ExampleRvAdapter.Orientation) {
+				if(orientation==ExampleRvAdapter.Orientation.VERTICAL){
+					mapList.changeMode(MapListViewModel.DisplayMode.MAP)
+					mapList.selectItem(item.item)
+					Observable.timer(1000, TimeUnit.MILLISECONDS)
+							.observeOn(AndroidSchedulers.mainThread())
+							.subscribe {
+								Toast.makeText(this@MainActivity, "Open detail view", Toast.LENGTH_SHORT).show()
+							}
+				}else{
+					Toast.makeText(this@MainActivity, "Open detail view", Toast.LENGTH_SHORT).show()
+				}
 			}
 		}
 
@@ -108,7 +115,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 			override fun onReady() {
 				mapList.setClusteringEnabled(true)
 				mapList.setClusterMinSize(5)
-				mapList.setMoveCameraOnMarkerFocusChange(false)
+				mapList.setMoveCameraOnMarkerFocusChange(true)
 				mapList.setOnBeforeClusterRenderedListener(object: MyRenderer.onBeforeClusterRenderedListener{
 					override fun onBeforeClusterRendered(cluster: Cluster<SelectableMarker>, markerOptions: MarkerOptions): Boolean {
 						val icon = IconGenerator(applicationContext).makeIcon(cluster.size.toString())
@@ -151,31 +158,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 			}
 		})
 
-// optional, DevToolFragment.DevToolTheme.DARK is set by default
+		// optional, DevToolFragment.DevToolTheme.DARK is set by default
 		builder.setTheme(DevToolFragment.DevToolTheme.DARK)
 				.build()
 	}
 
 	private fun addItems() {
-		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
 		//4
-		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.3680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.4667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
 		//8
-		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
-		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin_farmacia, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1680085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1640709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1667236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.1659541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
 		//12
-		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin, R.drawable.pin_selected))
-		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin, R.drawable.pin_selected))
+		items.add(ExampleItem(43.2880085,-2.9222963, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2840709,-2.9431234, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.3867236,-3.0121161, R.drawable.pin, R.drawable.pin_farmacia_selected))
+		items.add(ExampleItem(43.2859541,-2.9321773, R.drawable.pin, R.drawable.pin_farmacia_selected))
 
 		(0 until items.size)
 				.map { items[it] }

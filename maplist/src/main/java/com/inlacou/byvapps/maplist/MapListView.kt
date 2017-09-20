@@ -250,6 +250,10 @@ class MapListView<T: MapListElementModel> : FrameLayout {
 		return controller.moveMapTo(latLng, zoom, animate)
 	}
 
+	fun selectItem(item: T){
+		return controller.selectItem(item)
+	}
+
 	fun adjustBoundsToPoints() {
 		controller.adjustBoundsToPoints()
 	}

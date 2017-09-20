@@ -208,11 +208,13 @@ class MapListViewCtrl<T: MapListElementModel> {
 		}
 	}
 
-	fun scrollTo(position: Int) {
+	fun scrollTo(position: Int, smooth: Boolean = false) {
 		if(currentPosition!=null) {
-			view.recyclerViewHorizontal?.scrollToPosition(position)
+			if(!smooth) view.recyclerViewHorizontal?.scrollToPosition(position)
+			else view.recyclerViewHorizontal?.smoothScrollToPosition(position)
 		}else{
-			view.recyclerViewHorizontal?.scrollToPosition(position)
+			if(!smooth) view.recyclerViewHorizontal?.scrollToPosition(position)
+			else view.recyclerViewHorizontal?.smoothScrollToPosition(position)
 		}
 	}
 
@@ -347,6 +349,17 @@ class MapListViewCtrl<T: MapListElementModel> {
 
 	fun moveMapTo(latLng: LatLng, zoom: Float? = null, animate: Boolean = false): Boolean {
 		return MapUtils.moveMapTo(mMap, latLng.latitude, latLng.longitude, zoom, animate)
+	}
+
+	fun selectItem(item: T) {
+		//Get item position
+		val position = (0 until model.itemList.size)
+				.find { model.itemList[it]==item }
+		//selectMarker(position, true)
+		position?.let {
+			selectMarker(it)
+			scrollTo(it)
+		}
 	}
 
 }

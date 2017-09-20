@@ -59,11 +59,11 @@ class ExampleRvAdapter(private val context: Context,
         val viewHolder = holder as myViewHolder1
         viewHolder.view.setCallback(object : ExampleItemView.Callbacks {
             override fun onSurfaceClick(item: ExampleItemViewModel) {
-                callbacks.onItemClick(item)
+                callbacks.onItemClick(item, orientation)
             }
 
             override fun onDelete(item: ExampleItemViewModel) {
-                callbacks.onItemDeleted(item)
+                //callbacks.onItemDeleted(item)
             }
 
             override val data: ExampleItemViewModel
@@ -104,8 +104,7 @@ class ExampleRvAdapter(private val context: Context,
     }
 
     interface Callbacks {
-        fun onItemClick(item: ExampleItemViewModel)
-        fun onItemDeleted(item: ExampleItemViewModel)
+        fun onItemClick(item: ExampleItemViewModel, orientation: Orientation)
     }
 
     enum class Orientation{
