@@ -106,7 +106,7 @@ class MapListViewCtrl<T: MapListElementModel> {
 		Log.d(DEBUG_TAG +".saveData", "model.itemList.size: " + model.itemList.size)
 		Log.d(DEBUG_TAG +".saveData", "model.backupList.size: " + model.backupList.size)
 		model.backupList.clear()
-		(0..model.itemList.size-1)
+		(0 until model.itemList.size)
 				.map { model.itemList[it] }
 				.forEach { model.backupList.add(it) }
 	}
