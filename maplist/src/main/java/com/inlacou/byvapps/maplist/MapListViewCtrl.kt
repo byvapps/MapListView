@@ -108,6 +108,16 @@ class MapListViewCtrl<T: MapListElementModel> {
 		model.backupList.clear()
 		(0 until model.itemList.size)
 				.map { model.itemList[it] }
+				.filter {
+					try{
+						it.latitude.toString().toDouble()
+						it.longitude.toString().toDouble()
+						true
+					}catch (nfe: NumberFormatException){
+						Log.e(DEBUG_TAG, "Invalid lat/lng on element: $it")
+						false
+					}
+				}
 				.forEach { model.backupList.add(it) }
 	}
 
@@ -287,7 +297,6 @@ class MapListViewCtrl<T: MapListElementModel> {
 							true
 						}catch (nfe: NumberFormatException){
 							Log.e(DEBUG_TAG, "Invalid lat/lng on element: $it")
-							//TODO should filter it from other list too!
 							false
 						}
 					}
