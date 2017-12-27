@@ -37,7 +37,7 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
 	companion object {
-		final val DEBUG_TAG = MainActivity.javaClass.simpleName
+		val DEBUG_TAG = MainActivity::class.java.simpleName
 	}
 
 	private lateinit var mapList: MapListView<ExampleItem>
